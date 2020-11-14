@@ -55,7 +55,7 @@ class Invitation(BaseModel):
     attended = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.wedding.slug
+        return self.name
 
 
 class Story(BaseModel):

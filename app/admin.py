@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 
-from app.models import Wedding, Invitation
+from app.models import Wedding, Invitation, Story
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -21,16 +21,16 @@ class WeddingModelForm(forms.ModelForm):
         self.initial['template'] = 'default.html'
 
 
-class InvitationAdminInline(admin.StackedInline):
-    model = Invitation
+class StoryAdminInline(admin.StackedInline):
+    model = Story
     extra = 0
 
 
 @admin.register(Wedding)
 class WeddingAdmin(admin.ModelAdmin):
-    list_display = ['user', 'slug', 'template']
+    list_display = ['slug', 'bride', 'groom', 'date', 'template']
     form = WeddingModelForm
-    inlines = [InvitationAdminInline]
+    inlines = [StoryAdminInline]
 
     def get_queryset(self, request):
         qs = super(WeddingAdmin, self).get_queryset(request)
@@ -44,3 +44,14 @@ class WeddingAdmin(admin.ModelAdmin):
             readonly_fields += ['user']
 
         return readonly_fields
+
+
+@admin.register(Invitation)
+class InvitationAdmin(admin.ModelAdmin):
+    list_display = ['name', 'code', 'attended']
+
+    def get_queryset(self, request):
+        qs = super(InvitationAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            return qs.filter(wedding=request.user.wedding)
+        return qs
