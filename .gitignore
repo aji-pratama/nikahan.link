@@ -1,0 +1,7 @@
+# misc
+.DS_Store
+*.pem
+# Django
+.vscode/
+__pycache__
+# media
