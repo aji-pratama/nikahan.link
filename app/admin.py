@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 
-from app.models import Wedding
+from app.models import Wedding, Invitation
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -21,7 +21,12 @@ class WeddingModelForm(forms.ModelForm):
         self.initial['template'] = 'default.html'
 
 
+class InvitationAdminInline(admin.StackedInline):
+    model = Invitation
+    extra = 0
+
 @admin.register(Wedding)
 class WeddingAdmin(admin.ModelAdmin):
     list_display = ['user', 'slug', 'template']
     form = WeddingModelForm
+    inlines = [InvitationAdminInline]

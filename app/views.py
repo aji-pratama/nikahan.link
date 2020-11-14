@@ -10,20 +10,17 @@ class WeddingView(DetailView):
     template = 'wedding/default.html'
     model = Wedding
 
-    def get_object(self, queryset=None):
-        if queryset is None:
-            queryset = self.get_queryset()
-
+    def get_object(self):
+        queryset = self.get_queryset()
         slug = self.kwargs.get(self.slug_url_kwarg)
-        if slug is not None:
-            queryset = queryset.filter(publish_status=2, slug=slug)
-
+        invt_code = self.request.GET.get('invt')
         try:
             obj = queryset.get()
+            if obj.private:
+                return queryset.get(publish_status=2, slug=slug, invitation__key=invt_code)
+            return obj
         except queryset.model.DoesNotExist:
             raise Http404(_("No %(verbose_name)s found matching the query") % {'verbose_name': queryset.model._meta.verbose_name})
-
-        return obj
 
     def get_template_names(self):
         obj = self.get_object()

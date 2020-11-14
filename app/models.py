@@ -23,6 +23,7 @@ class Wedding(BaseModel):
     slug = models.SlugField(blank=True, null=True)
     template = models.CharField(max_length=255)
     publish_status = models.PositiveSmallIntegerField(default=0, choices=PUBLISH_STATUS_CHOICES)
+    private = models.BooleanField(default=False)
 
     bride = models.CharField(max_length=50)
     groom = models.CharField(max_length=50)
@@ -45,6 +46,18 @@ class Wedding(BaseModel):
             name = "{} {}".format(self.bride, self.groom)
             self.slug = generate_unique_slug(self, Wedding, name)
         super(Wedding, self).save(*args, **kwargs)
+
+
+class Invitation(BaseModel):
+    wedding = models.ForeignKey(Wedding, null=True, blank=True, on_delete=models.CASCADE)
+    key = models.CharField(max_length=55)
+
+    name = models.CharField(max_length=255)
+    greeting = models.TextField(blank=True)
+    attended = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.wedding.slug
 
 
 class Story(BaseModel):
