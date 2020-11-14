@@ -28,10 +28,8 @@ class Wedding(BaseModel):
     bride = models.CharField(max_length=50)
     groom = models.CharField(max_length=50)
     date = models.DateField()
-
     about_bride = models.CharField(max_length=255, null=True, blank=True)
     about_groom = models.CharField(max_length=255, null=True, blank=True)
-
     quotes = models.CharField(max_length=255, null=True, blank=True)
 
     address = models.TextField()
