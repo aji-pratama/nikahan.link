@@ -25,8 +25,22 @@ class InvitationAdminInline(admin.StackedInline):
     model = Invitation
     extra = 0
 
+
 @admin.register(Wedding)
 class WeddingAdmin(admin.ModelAdmin):
     list_display = ['user', 'slug', 'template']
     form = WeddingModelForm
     inlines = [InvitationAdminInline]
+
+    def get_queryset(self, request):
+        qs = super(WeddingAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            return qs.filter(user=request.user)
+        return qs
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly_fields = []
+        if not request.user.is_superuser:
+            readonly_fields += ['user']
+
+        return readonly_fields

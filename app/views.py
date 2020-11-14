@@ -12,7 +12,7 @@ class WeddingView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['guest'] = Invitation.objects.get(wedding=self.get_object(), key=self.request.GET.get('invt'))
+        context['guest'] = Invitation.objects.get(wedding=self.get_object(), code=self.request.GET.get('invt'))
         return context
 
     def get_object(self):
@@ -23,7 +23,7 @@ class WeddingView(DetailView):
                 return queryset.get(
                     publish_status=2,
                     slug=self.kwargs.get(self.slug_url_kwarg),
-                    invitation__key=self.request.GET.get('invt')
+                    invitation__code=self.request.GET.get('invt')
                 )
             return obj
         except queryset.model.DoesNotExist:

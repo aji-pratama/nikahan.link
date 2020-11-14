@@ -50,7 +50,7 @@ class Wedding(BaseModel):
 
 class Invitation(BaseModel):
     wedding = models.ForeignKey(Wedding, null=True, blank=True, on_delete=models.CASCADE)
-    key = models.CharField(max_length=55)
+    code = models.CharField(max_length=55)
 
     name = models.CharField(max_length=255)
     greeting = models.TextField(blank=True)
