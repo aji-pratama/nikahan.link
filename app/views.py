@@ -1,5 +1,4 @@
 from django.http import Http404
-from django.utils.translation import ugettext_lazy as _
 from django.views.generic import DetailView
 
 from app.models import Wedding, Invitation
@@ -20,7 +19,7 @@ class WeddingView(DetailView):
         try:
             return queryset.get(publish_status=2, slug=self.kwargs.get(self.slug_url_kwarg))
         except queryset.model.DoesNotExist:
-            raise Http404(_("No %(verbose_name)s found matching the query") % {'verbose_name': queryset.model._meta.verbose_name})
+            raise Http404("Tidak ditemukan undangan pernikahan ini.")
 
     def get_template_names(self):
         obj = self.get_object()

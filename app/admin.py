@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 
-from app.models import Wedding, Invitation, Story
+from app.models import Wedding, Invitation, Story, Gallery
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -21,16 +21,19 @@ class WeddingModelForm(forms.ModelForm):
         self.initial['template'] = 'default.html'
 
 
-class StoryAdminInline(admin.StackedInline):
-    model = Story
-    extra = 0
+class WeddingContentAdmin(admin.ModelAdmin):
+
+    def get_queryset(self, request):
+        qs = super(WeddingContentAdmin, self).get_queryset(request)
+        if not request.user.is_superuser:
+            return qs.filter(wedding=request.user.wedding)
+        return qs
 
 
 @admin.register(Wedding)
 class WeddingAdmin(admin.ModelAdmin):
     list_display = ['slug', 'bride', 'groom', 'date', 'template']
     form = WeddingModelForm
-    inlines = [StoryAdminInline]
 
     def get_queryset(self, request):
         qs = super(WeddingAdmin, self).get_queryset(request)
@@ -47,11 +50,15 @@ class WeddingAdmin(admin.ModelAdmin):
 
 
 @admin.register(Invitation)
-class InvitationAdmin(admin.ModelAdmin):
+class InvitationAdmin(WeddingContentAdmin):
     list_display = ['name', 'code', 'attended']
 
-    def get_queryset(self, request):
-        qs = super(InvitationAdmin, self).get_queryset(request)
-        if not request.user.is_superuser:
-            return qs.filter(wedding=request.user.wedding)
-        return qs
+
+@admin.register(Gallery)
+class GalleryAdmin(WeddingContentAdmin):
+    list_display = ['title']
+
+
+@admin.register(Story)
+class StoryAdmin(WeddingContentAdmin):
+    list_display = ['title']
