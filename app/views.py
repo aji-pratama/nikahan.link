@@ -12,26 +12,30 @@ class WeddingView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['guest'] = Invitation.objects.get(wedding=self.get_object(), code=self.request.GET.get('invt'))
+        context['guest'] = self.get_guest()
         return context
 
     def get_object(self):
         queryset = self.get_queryset()
         try:
-            obj = queryset.get()
-            if obj.private:
-                return queryset.get(
-                    publish_status=2,
-                    slug=self.kwargs.get(self.slug_url_kwarg),
-                    invitation__code=self.request.GET.get('invt')
-                )
-            return obj
+            return queryset.get(publish_status=2, slug=self.kwargs.get(self.slug_url_kwarg))
         except queryset.model.DoesNotExist:
             raise Http404(_("No %(verbose_name)s found matching the query") % {'verbose_name': queryset.model._meta.verbose_name})
 
     def get_template_names(self):
         obj = self.get_object()
+        queryset = self.get_queryset()
         if obj.template:
+            if obj.private:
+                try:
+                    obj = queryset.get(invitation__code=self.request.GET.get('invite'))
+                except queryset.model.DoesNotExist:
+                    return ['web/invitation_code.html']
             return ['wedding/{}'.format(obj.template)]
-        else:
-            return [self.template_name]
+        return [self.template_name]
+
+    def get_guest(self):
+        try:
+            return Invitation.objects.get(wedding=self.get_object(), code=self.request.GET.get('invite'))
+        except Exception:
+            return None
