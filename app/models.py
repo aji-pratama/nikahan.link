@@ -36,6 +36,10 @@ class Wedding(BaseModel):
     latitude = models.FloatField()
     longitude = models.FloatField()
 
+    class Meta:
+        verbose_name = "Konten Pernikahan"
+        verbose_name_plural = "Konten Pernikahan"
+
     def __str__(self):
         return self.slug
 
@@ -54,6 +58,10 @@ class Invitation(BaseModel):
     greeting = models.TextField(blank=True)
     attended = models.BooleanField(default=False)
 
+    class Meta:
+        verbose_name = "Undangan"
+        verbose_name_plural = "Undangan"
+
     def __str__(self):
         return self.name
 
@@ -64,6 +72,10 @@ class Story(BaseModel):
     title = models.CharField(max_length=255, null=True, blank=True)
     body = models.TextField()
 
+    class Meta:
+        verbose_name = "Kisah Perjalan"
+        verbose_name_plural = "Kisah Perjalan"
+
     def __str__(self):
         return self.wedding.slug
 
@@ -71,6 +83,10 @@ class Story(BaseModel):
 class Gallery(BaseModel):
     wedding = models.ForeignKey(Wedding, null=True, blank=True, on_delete=models.CASCADE)
     title = models.CharField(max_length=50)
+
+    class Meta:
+        verbose_name = "Galeri"
+        verbose_name_plural = "Galeri"
 
     def __str__(self):
         return self.wedding.slug
@@ -80,6 +96,10 @@ class ImageGallery(BaseModel):
     gallery = models.ForeignKey(Gallery, null=True, blank=True, on_delete=models.CASCADE)
     caption = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='galley_image')
+
+    class Meta:
+        verbose_name = "Foto Galeri"
+        verbose_name_plural = "Foto Galeri"
 
     def __str__(self):
         return self.galley.title
