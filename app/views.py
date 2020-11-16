@@ -1,7 +1,11 @@
 from django.http import Http404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, TemplateView
 
 from app.models import Wedding, Invitation
+
+
+class HomeView(TemplateView):
+    template_name = 'web/index.html'
 
 
 class WeddingView(DetailView):
