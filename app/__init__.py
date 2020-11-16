@@ -1,4 +1,8 @@
+import re
+
+from django.core.exceptions import ValidationError
 from django.template.defaultfilters import slugify
+from django.utils.translation import ugettext_lazy as _
 
 
 def generate_unique_slug(obj, Model, slug_source):
@@ -18,3 +22,14 @@ def generate_unique_slug(obj, Model, slug_source):
             slug = "{}-{}".format(base_slug, n)
 
     return slug
+
+
+def validate_phone_number(value):
+    value = value.strip()
+    valid = (re.match(r'^628\d{8,11}$', value) is not None)
+
+    if not valid:
+        raise ValidationError(
+            _('%(value)s Nomor HP harus valid diawali dengan kode negara 62'),
+            params={'value': value},
+        )

@@ -3,8 +3,9 @@ import os
 from django import forms
 from django.conf import settings
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 
-from app.models import Wedding, Invitation, Story, Gallery
+from app.models import Wedding, Invitation, Story, Gallery, InvitationText
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -51,7 +52,22 @@ class WeddingAdmin(admin.ModelAdmin):
 
 @admin.register(Invitation)
 class InvitationAdmin(WeddingContentAdmin):
-    list_display = ['name', 'code', 'attended']
+    list_display = ['name', 'code', 'wa_invite', 'attended']
+
+    def wa_invite(self, obj):
+        if obj.phone:
+            return mark_safe(
+                '<a class="btn btn-success" href="https://wa.me/{}?text={}" target="_blank"> Undang via Whatsapp </a>'.format(
+                    obj.phone,
+                    obj.wedding.invitation_text.text
+                )
+            )
+        return None
+
+
+@admin.register(InvitationText)
+class InvitationTextAdmin(WeddingContentAdmin):
+    list_display = ['text']
 
 
 @admin.register(Gallery)

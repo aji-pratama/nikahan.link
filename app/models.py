@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.db import models
 
-from app import generate_unique_slug
+from app import generate_unique_slug, validate_phone_number
 
 PUBLISH_STATUS_CHOICES = (
     (0, 'Draft'),
@@ -55,6 +55,7 @@ class Invitation(BaseModel):
     code = models.CharField(max_length=55)
 
     name = models.CharField(max_length=255)
+    phone = models.CharField(max_length=50, null=True, blank=True, validators=[validate_phone_number])
     greeting = models.TextField(blank=True)
     attended = models.BooleanField(default=False)
 
@@ -64,6 +65,18 @@ class Invitation(BaseModel):
 
     def __str__(self):
         return self.name
+
+
+class InvitationText(BaseModel):
+    wedding = models.OneToOneField(Wedding, related_name='invitation_text', on_delete=models.CASCADE)
+    text = models.TextField()
+
+    class Meta:
+        verbose_name = "Kalimat Undangan"
+        verbose_name_plural = "Kalimat Undangan"
+
+    def __str__(self):
+        return self.wedding.slug
 
 
 class Story(BaseModel):
