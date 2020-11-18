@@ -5,3 +5,5 @@ sudo ln -f config/bin/nginx.conf /etc/nginx/sites-enabled/niklink.conf
 sudo service uwsgi restart
 
 sudo service nginx reload
+
+sudo certbot --nginx -d nikahan.link -d www.nikahan.link
