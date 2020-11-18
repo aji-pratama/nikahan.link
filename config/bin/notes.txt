@@ -6,4 +6,3 @@ sudo service uwsgi restart
 
 sudo service nginx reload
 
-sudo certbot --nginx -d nikahan.link -d www.nikahan.link
