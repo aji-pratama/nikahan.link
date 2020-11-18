@@ -1,5 +1,4 @@
 import os
-import ast
 
 from pathlib import Path
 from dotenv import load_dotenv
@@ -12,10 +11,10 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = '2h&$!doqx$2pn0m#clixsq52^_0!u*g49)i%kr6=r)^4^e3%$a'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = bool(os.getenv("DEBUG"))
+DEBUG = False
 ALLOWED_HOSTS = ['nikahan.link', 'www.nikahan.link', '127.0.0.1', 'localhost']
 
 
