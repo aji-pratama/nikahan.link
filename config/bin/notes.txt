@@ -1,0 +1,7 @@
+sudo ln -f config/bin/uwsgi.ini /etc/uwsgi/apps-enabled/niklink.ini
+
+sudo ln -f config/bin/nginx.conf /etc/nginx/sites-enabled/niklink.conf
+
+sudo service uwsgi restart
+
+sudo service nginx reload

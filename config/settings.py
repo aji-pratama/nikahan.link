@@ -13,7 +13,7 @@ SECRET_KEY = '2h&$!doqx$2pn0m#clixsq52^_0!u*g49)i%kr6=r)^4^e3%$a'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['nikahan.link', 'www.nikahan.link']
 
 
 # Application definition
