@@ -4,7 +4,12 @@ import environ
 
 env = environ.Env(
     # set casting, default value
-    DEBUG=(bool, False)
+    DEBUG=(bool, False),
+    DB_NAME=(str, 'niklink'),
+    DB_USER=(str, 'postgres'),
+    DB_HOST=(str, '127.0.0.1'),
+    DB_PASSWORD=(str, ''),
+    DB_PORT=(int, 5432)
 )
 # reading .env file
 environ.Env.read_env()
@@ -75,11 +80,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME'),
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
