@@ -1,0 +1,29 @@
+sudo apt-get install nginx
+sudo apt-get install python3-dev
+sudo -H pip3 install uwsgi
+sudo -H pip install --upgrade pip
+sudo -H pip install virtualenv virtualenvwrapper
+
+echo "export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3" >> ~/.bashrc
+echo "export WORKON_HOME=~/Env" >> ~/.bashrc
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+source ~/.bashrc
+mkvirtualenv niklink
+
+git clone https://github.com/aji-pratama/nikahan.link
+mv nikahan.link niklink
+cd niklink
+pip3 install -r requirements.txt
+
+sudo ln -f config/bin/uwsgi.ini /etc/uwsgi/apps-enabled/niklink.ini
+sudo ln -f config/bin/nginx.conf /etc/nginx/sites-enabled/niklink.conf
+sudo ln -f config/bin/uswgi.service /etc/systemd/system/uwsgi.service
+
+sudo systemctl daemon-reload
+sudo service uwsgi restart
+sudo service nginx reload
+
+sudo add-apt-repository ppa:certbot/certbot
+sudo apt-get update
+sudo apt-get install certbot
+
