@@ -27,6 +27,8 @@ class Wedding(BaseModel):
 
     bride = models.CharField(max_length=50)
     groom = models.CharField(max_length=50)
+    bride_photo = models.ImageField(upload_to='bride', null=True, blank=True)
+    groom_photo = models.ImageField(upload_to='groom', null=True, blank=True)
     date = models.DateField()
     about_bride = models.CharField(max_length=255, null=True, blank=True)
     about_groom = models.CharField(max_length=255, null=True, blank=True)
