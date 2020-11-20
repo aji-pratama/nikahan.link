@@ -31,7 +31,7 @@ class WeddingView(DetailView):
         if obj.template:
             if obj.private:
                 try:
-                    obj = queryset.get(invitation__code=self.request.GET.get('invite'))
+                    obj = queryset.get(invitation__code=self.request.GET.get('invite', ''))
                 except queryset.model.DoesNotExist:
                     return ['web/invitation_code.html']
             return ['wedding/{}'.format(obj.template)]

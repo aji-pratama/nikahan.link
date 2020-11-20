@@ -86,6 +86,7 @@ class Story(BaseModel):
     date = models.DateField()
     title = models.CharField(max_length=255, null=True, blank=True)
     body = models.TextField()
+    image = models.ImageField(upload_to='story_image', null=True, blank=True)
 
     class Meta:
         verbose_name = "Kisah Perjalan"

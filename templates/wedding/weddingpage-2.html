@@ -2944,7 +2944,7 @@
 																			<p
 																				class="elementor-heading-title elementor-size-default"
 																			>
-																				28 . November . 20xx
+																				{{ wedding.date }}
 																			</p>
 																		</div>
 																	</div>
@@ -2959,11 +2959,7 @@
 																				class="elementor-text-editor elementor-clearfix"
 																			>
 																				<p class="italic mb-4">
-																					Levidio Wedding Page is lorem ipsum
-																					dolor sit amet consect etur adipiscint
-																					elit esed adipiscing elit sed tempor.
-																					Incididunt lorem ipsum dolor sit amet
-																					incididunt lorem.
+																					{{ wedding.quotes }}
 																				</p>
 																			</div>
 																		</div>
@@ -3040,8 +3036,7 @@
 																					class="elementor-image-box-content"
 																				>
 																					<h3 class="elementor-image-box-title">
-																						Jl. Sriwijaya X no. 5 Jember Jawa
-																						Timur, Indonesia
+																						{{ wedding.address }}
 																					</h3>
 																				</div>
 																			</div>
@@ -3154,6 +3149,7 @@
 						</div>
 					</section>
 
+					{% if Wedding.story_set %}
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-ee3958f elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ee3958f" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
@@ -3346,7 +3342,7 @@
 																			<p
 																				class="elementor-heading-title elementor-size-default"
 																			>
-																				SEPTEMBER 13, 20XX
+																				{{ wedding.date }}
 																			</p>
 																		</div>
 																	</div>
@@ -3361,11 +3357,7 @@
 																				class="elementor-text-editor elementor-clearfix"
 																			>
 																				<p class="italic mb-4">
-																					Levidio Wedding Page is lorem ipsum
-																					dolor sit amet consect etur adipiscint
-																					elit esed adipiscing elit sed tempor.
-																					Incididunt lorem ipsum dolor sit amet
-																					incididunt lorem.
+																					{{ wedding.quotes }}
 																				</p>
 																			</div>
 																		</div>
@@ -3530,6 +3522,7 @@
 							</div>
 						</div>
 					</section>
+					{% endif %}
 
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-ba8c36e elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ba8c36e" data-element_type="section" data-settings='{"background_background":"classic"}'>
 						<div class="elementor-background-overlay"></div>
@@ -3592,104 +3585,25 @@
 												data-widget_type="form.default"
 											>
 												<div class="elementor-widget-container">
-													<form
-														class="elementor-form"
-														method="post"
-														name="New Form"
-													>
-														<input type="hidden" name="post_id" value="61" />
-														<input
-															type="hidden"
-															name="form_id"
-															value="1e1e0ca"
-														/>
-
-														<input type="hidden" name="queried_id" value="61" />
-
-														<div
-															class="elementor-form-fields-wrapper elementor-labels-"
-														>
-															<div
-																class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-50"
-															>
-																<label
-																	for="form-field-name"
-																	class="elementor-field-label elementor-screen-only"
-																	>Name</label
-																><input
-																	size="1"
-																	type="text"
-																	name="form_fields[name]"
-																	id="form-field-name"
-																	class="elementor-field elementor-size-sm elementor-field-textual"
-																	placeholder="Name"
-																/>
+													<form class="elementor-form" method="post" name="New Form">
+														<div class="elementor-form-fields-wrapper elementor-labels-">
+															<div class="elementor-field-type-text elementor-field-group elementor-column elementor-field-group-name elementor-col-50">
+																<label class="elementor-field-label elementor-screen-only" >Name</label>
+																<input value="{{ guest.name }}" type="text" name="name" id="form-field-name" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Name"/>
 															</div>
-															<div
-																class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-50 elementor-field-required"
-															>
-																<label
-																	for="form-field-email"
-																	class="elementor-field-label elementor-screen-only"
-																	>Email</label
-																><input
-																	size="1"
-																	type="email"
-																	name="form_fields[email]"
-																	id="form-field-email"
-																	class="elementor-field elementor-size-sm elementor-field-textual"
-																	placeholder="Email"
-																	required="required"
-																	aria-required="true"
-																/>
+															<div class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_848f03e elementor-col-40">
+																<label class="elementor-field-label elementor-screen-only" >Phone</label>
+																<input value="{% if guest.phone %}{{ guest.phone }}{% endif %}" type="phone" name="phone" id="form-field-field_848f03e" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Phone Number" pattern="[0-9()#&amp;+*-=.]+" title="Only numbers and phone characters (#, -, *, etc) are accepted."/>
 															</div>
-															<div
-																class="elementor-field-type-number elementor-field-group elementor-column elementor-field-group-field_4a170a7 elementor-col-20"
-															>
-																<label
-																	for="form-field-field_4a170a7"
-																	class="elementor-field-label elementor-screen-only"
-																	>Guest</label
-																><input
-																	type="number"
-																	name="form_fields[field_4a170a7]"
-																	id="form-field-field_4a170a7"
-																	class="elementor-field elementor-size-sm elementor-field-textual"
-																	placeholder="Guest"
-																	min=""
-																	max=""
-																/>
+															<div class="elementor-field-type-email elementor-field-group elementor-column elementor-field-group-email elementor-col-50 elementor-field-required">
+																<label for="form-field-email" class="elementor-field-label elementor-screen-only" >Greeting</label>
+																<textarea value="{% if guest.email %}{{ guest.email }}{% endif %}" type="textarea" name="greeting" id="form-field-email" class="elementor-field elementor-size-sm elementor-field-textual" placeholder="Greeting" aria-required="true"></textarea>
 															</div>
-															<div
-																class="elementor-field-type-tel elementor-field-group elementor-column elementor-field-group-field_848f03e elementor-col-40"
-															>
-																<label
-																	for="form-field-field_848f03e"
-																	class="elementor-field-label elementor-screen-only"
-																	>Phone</label
-																><input
-																	size="1"
-																	type="tel"
-																	name="form_fields[field_848f03e]"
-																	id="form-field-field_848f03e"
-																	class="elementor-field elementor-size-sm elementor-field-textual"
-																	placeholder="Phone Number"
-																	pattern="[0-9()#&amp;+*-=.]+"
-																	title="Only numbers and phone characters (#, -, *, etc) are accepted."
-																/>
-															</div>
-															<div
-																class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-40 e-form__buttons"
-															>
-																<button
-																	type="submit"
-																	class="elementor-button elementor-size-lg"
-																>
+															<div class="elementor-field-group elementor-column elementor-field-type-submit elementor-col-40 e-form__buttons">
+																<button type="submit" class="elementor-button elementor-size-lg">
 																	<span>
 																		<span class="elementor-button-icon"> </span>
-																		<span class="elementor-button-text"
-																			>I am Attending</span
-																		>
+																		<span class="elementor-button-text">I am Attending</span>
 																	</span>
 																</button>
 															</div>
@@ -3707,21 +3621,10 @@
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-744b6af elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="744b6af" data-element_type="section" data-settings='{"background_background":"classic"}'>
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
-								<div
-									class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e356ed0"
-									data-id="e356ed0"
-									data-element_type="column"
-								>
-									<div
-										class="elementor-column-wrap elementor-element-populated"
-									>
+								<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e356ed0" data-id="e356ed0" data-element_type="column">
+									<div class="elementor-column-wrap elementor-element-populated">
 										<div class="elementor-widget-wrap">
-											<div
-												class="elementor-element elementor-element-bfc8565 elementor-widget elementor-widget-google_maps"
-												data-id="bfc8565"
-												data-element_type="widget"
-												data-widget_type="google_maps.default"
-											>
+											<div class="elementor-element elementor-element-bfc8565 elementor-widget elementor-widget-google_maps" data-id="bfc8565" data-element_type="widget" data-widget_type="google_maps.default">
 												<div class="elementor-widget-container">
 													<div class="elementor-custom-embed">
 														<iframe
@@ -3736,34 +3639,22 @@
 													</div>
 												</div>
 											</div>
-											<div
-												class="elementor-element elementor-element-227a1cf elementor-widget-divider--view-line_text elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider"
-												data-id="227a1cf"
-												data-element_type="widget"
-												data-widget_type="divider.default"
-											>
+											<div class="elementor-element elementor-element-227a1cf elementor-widget-divider--view-line_text elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider" data-id="227a1cf" data-element_type="widget" data-widget_type="divider.default">
 												<div class="elementor-widget-container">
 													<div class="elementor-divider">
 														<span class="elementor-divider-separator">
 															<span
 																class="elementor-divider__text elementor-divider__element"
-																>Dewa &amp; Dewi</span
+																>{{ wedding.groom }} &amp; {{ wedding.bride }}</span
 															>
 														</span>
 													</div>
 												</div>
 											</div>
-											<div
-												class="elementor-element elementor-element-39dd0b4 elementor-widget elementor-widget-heading"
-												data-id="39dd0b4"
-												data-element_type="widget"
-												data-widget_type="heading.default"
-											>
+											<div class="elementor-element elementor-element-39dd0b4 elementor-widget elementor-widget-heading" data-id="39dd0b4" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
-													<p
-														class="elementor-heading-title elementor-size-default"
-													>
-														SUNDAY - NOV. 28 20xx
+													<p class="elementor-heading-title elementor-size-default">
+														{{ wedding.date }}
 													</p>
 												</div>
 											</div>
@@ -3796,7 +3687,7 @@
 													<p
 														class="elementor-heading-title elementor-size-default"
 													>
-														Copyright Levidio Wedding - All Rights Reserved
+														Copyright Nikahan.Link - All Rights Reserved
 													</p>
 												</div>
 											</div>
@@ -3831,7 +3722,7 @@
 													<p
 														class="elementor-heading-title elementor-size-default"
 													>
-														info@rootpixel.net
+														nikahan.link@gmail.com
 													</p>
 												</div>
 											</div>
