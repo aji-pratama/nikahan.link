@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 
+from versatileimagefield.fields import VersatileImageField
+
 from app import generate_unique_slug, validate_phone_number
 
 PUBLISH_STATUS_CHOICES = (
@@ -27,8 +29,8 @@ class Wedding(BaseModel):
 
     bride = models.CharField(max_length=50)
     groom = models.CharField(max_length=50)
-    bride_photo = models.ImageField(upload_to='bride', null=True, blank=True)
-    groom_photo = models.ImageField(upload_to='groom', null=True, blank=True)
+    bride_photo = VersatileImageField(upload_to='bride_photo', null=True, blank=True)
+    groom_photo = VersatileImageField(upload_to='groom_photo', null=True, blank=True)
     date = models.DateField()
     about_bride = models.CharField(max_length=255, null=True, blank=True)
     about_groom = models.CharField(max_length=255, null=True, blank=True)
