@@ -55,13 +55,15 @@ class InvitationAdmin(WeddingContentAdmin):
     list_display = ['name', 'code', 'wa_invite', 'attended']
 
     def wa_invite(self, obj):
+        invitation_test = obj.wedding.invitation_text.text if hasattr(obj.wedding, 'invitation_text') else ''
         if obj.phone:
-            return mark_safe(
+            html = mark_safe(
                 '<a class="btn btn-success" href="https://wa.me/{}?text={}" target="_blank"> Undang via Whatsapp </a>'.format(
                     obj.phone,
-                    obj.wedding.invitation_text.text
+                    invitation_test
                 )
             )
+            return html
         return None
 
 
