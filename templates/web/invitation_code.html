@@ -1,5 +1,39 @@
-<h1>Invitation Code</h1>
-
-<form method="get" action>
-    <input type="text" name="invite">
-</form>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Undangan Pernikahan Digital | {{ wedding.groom }} & {{ wedding.bride }} </title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/argon.min.css">
+    </head>
+    <body style="background-color:#525f7f">
+        <div class="d-flex align-items-center min-vh-100">
+            <div class="container mt--8">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 col-md-8">
+                        <div class="card bg-secondary border-0">
+                            <div class="card-body px-lg-5 py-lg-5">
+                                <div class="text-center text-muted mb-4">
+                                    <p>Undangan ini dibatasi oleh pemilik.</p>
+                                </div>
+                                <form role="form">
+                                    <div class="form-group">
+                                        <div class="input-group input-group-merge input-group-alternative">
+                                            <input class="form-control form-control-alternative" placeholder="Masukan kode undangan" type="text" name="invite">
+                                        </div>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary btn-lg">MASUK</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
