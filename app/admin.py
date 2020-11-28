@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from app.models import Wedding, Invitation, Story, Gallery, InvitationText
+from app.models import Wedding, Bride, Groom, Invitation, Story, Gallery, InvitationText
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -31,10 +31,21 @@ class WeddingContentAdmin(admin.ModelAdmin):
         return qs
 
 
+class BrideAdminInline(admin.StackedInline):
+    model = Bride
+    extra = 1
+
+
+class GroomAdminInline(admin.StackedInline):
+    model = Groom
+    extra = 1
+
+
 @admin.register(Wedding)
 class WeddingAdmin(admin.ModelAdmin):
-    list_display = ['slug', 'bride', 'groom', 'date', 'template']
+    list_display = ['slug', 'date', 'template']
     form = WeddingModelForm
+    inlines = [BrideAdminInline, GroomAdminInline]
 
     class Media:
         if hasattr(settings, 'GOOGLE_MAPS_API_KEY') and settings.GOOGLE_MAPS_API_KEY:
@@ -55,7 +66,7 @@ class WeddingAdmin(admin.ModelAdmin):
     def get_readonly_fields(self, request, obj=None):
         readonly_fields = []
         if not request.user.is_superuser:
-            readonly_fields += ['user']
+            readonly_fields += ['user', 'publish_status']
 
         return readonly_fields
 

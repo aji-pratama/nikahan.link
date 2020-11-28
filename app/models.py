@@ -7,7 +7,7 @@ from app import generate_unique_slug, validate_phone_number
 
 PUBLISH_STATUS_CHOICES = (
     (0, 'Draft'),
-    (1, 'Review'),
+    (1, 'Pending'),
     (2, 'Published')
 )
 
@@ -22,36 +22,68 @@ class BaseModel(models.Model):
 
 class Wedding(BaseModel):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    slug = models.SlugField(blank=True, null=True)
-    template = models.CharField(max_length=255)
+    slug = models.SlugField(blank=True, null=True, help_text='Url yang akan ditampilkan dalam undangan digital.')
+    template = models.CharField(max_length=255, help_text='Template website yang digunakan')
     publish_status = models.PositiveSmallIntegerField(default=0, choices=PUBLISH_STATUS_CHOICES)
     private = models.BooleanField(default=False)
+    active = models.BooleanField(default=True)
 
-    bride = models.CharField(max_length=50)
-    groom = models.CharField(max_length=50)
-    bride_photo = VersatileImageField(upload_to='bride_photo', null=True, blank=True)
-    groom_photo = VersatileImageField(upload_to='groom_photo', null=True, blank=True)
     date = models.DateField()
-    about_bride = models.CharField(max_length=255, null=True, blank=True)
-    about_groom = models.CharField(max_length=255, null=True, blank=True)
     quotes = models.CharField(max_length=255, null=True, blank=True)
+    time = models.TimeField()
 
     address = models.TextField()
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
     longitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
 
     class Meta:
-        verbose_name = "Konten Pernikahan"
-        verbose_name_plural = "Konten Pernikahan"
+        verbose_name = "Pernikahan"
+        verbose_name_plural = "Pernikahan"
 
     def __str__(self):
         return self.slug
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            name = "{} {}".format(self.bride, self.groom)
+            name = "{} {}".format(self.bride.name, self.groom.name)
             self.slug = generate_unique_slug(self, Wedding, name)
         super(Wedding, self).save(*args, **kwargs)
+
+
+class Bride(BaseModel):
+    wedding = models.OneToOneField(Wedding, related_name='bride', on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    photo = VersatileImageField(upload_to='bride_photo')
+    about = models.TextField(blank=True)
+
+    facebook = models.URLField(max_length=150, null=True, blank=True)
+    twitter = models.URLField(max_length=150, null=True, blank=True)
+    instagram = models.URLField(max_length=150, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Mempelai Laki-laki"
+        verbose_name_plural = "Mempelai Laki-laki"
+
+    def __str__(self):
+        return self.name
+
+
+class Groom(BaseModel):
+    wedding = models.OneToOneField(Wedding, related_name='groom', on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+    photo = VersatileImageField(upload_to='groom_photo')
+    about = models.TextField(blank=True)
+
+    facebook = models.URLField(max_length=150, null=True, blank=True)
+    twitter = models.URLField(max_length=150, null=True, blank=True)
+    instagram = models.URLField(max_length=150, null=True, blank=True)
+
+    class Meta:
+        verbose_name = "Mempelai Perempuan"
+        verbose_name_plural = "Mempelai Perempuan"
+
+    def __str__(self):
+        return self.name
 
 
 class Invitation(BaseModel):
