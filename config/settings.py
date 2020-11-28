@@ -128,3 +128,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'assets', 'media/')
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'assets', 'static/'), )
+
+
+#  ======================================== #
+#             Custom Settings               #
+#  ======================================== #
+
+GOOGLE_MAPS_API_KEY = env('GOOGLE_MAPS_API_KEY')

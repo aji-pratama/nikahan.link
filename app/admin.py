@@ -36,6 +36,16 @@ class WeddingAdmin(admin.ModelAdmin):
     list_display = ['slug', 'bride', 'groom', 'date', 'template']
     form = WeddingModelForm
 
+    class Media:
+        if hasattr(settings, 'GOOGLE_MAPS_API_KEY') and settings.GOOGLE_MAPS_API_KEY:
+            css = {
+                'all': ('admin/css/location_picker.css',),
+            }
+            js = (
+                'https://maps.googleapis.com/maps/api/js?key={}'.format(settings.GOOGLE_MAPS_API_KEY),
+                'admin/js/location_picker.js',
+            )
+
     def get_queryset(self, request):
         qs = super(WeddingAdmin, self).get_queryset(request)
         if not request.user.is_superuser:
