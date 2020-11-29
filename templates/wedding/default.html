@@ -2586,7 +2586,7 @@
 											<div class="elementor-element elementor-element-84f38f1 elementor-widget elementor-widget-heading" data-id="84f38f1" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
 													<h2 class="elementor-heading-title elementor-size-default">
-														{{ wedding.groom }} &amp; {{ wedding.bride }}
+														{{ wedding.groom.name }} &amp; {{ wedding.bride.name }}
 													</h2>
 												</div>
 											</div>
@@ -2695,14 +2695,14 @@
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="720" height="720" src="{{ wedding.groom_photo.crop.400x400 }}" class="attachment-full size-full" alt="" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" style="border-radius: 50%"/>
+																					<img width="720" height="720" src="{{ wedding.groom.photo.crop.400x400 }}" class="attachment-full size-full" alt="" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" style="border-radius: 50%"/>
 																				</figure>
 																				<div class="elementor-image-box-content">
 																					<h3 class="elementor-image-box-title">
-																						{{ wedding.groom }}
+																						{{ wedding.groom.name }}
 																					</h3>
 																					<p class="elementor-image-box-description">
-																						{{ wedding.about_groom }}
+																						{{ wedding.groom.about }}
 																					</p>
 																				</div>
 																			</div>
@@ -2712,19 +2712,19 @@
 																		<div class="elementor-widget-container">
 																			<div class="elementor-social-icons-wrapper elementor-grid">
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459"target="_blank">
+																					<a href="{{ wedding.groom.facebook }}" class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459"target="_blank">
 																						<span class="elementor-screen-only">Facebook</span>
 																						<i class="fab fa-facebook"></i>
 																					</a>
 																				</div>
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405"target="_blank">
+																					<a href="{{ wedding.groom.instagram }}" class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405"target="_blank">
 																						<span class="elementor-screen-only">Instagram</span>
 																						<i class="fab fa-instagram"></i>
 																					</a>
 																				</div>
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f"target="_blank">
+																					<a href="{{ wedding.groom.twitter }}" class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f"target="_blank">
 																						<span class="elementor-screen-only">Twitter</span>
 																						<i class="fab fa-twitter"></i>
 																					</a>
@@ -2742,14 +2742,14 @@
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-box-wrapper">
 																				<figure class="elementor-image-box-img">
-																					<img width="720" height="720" src="{{ wedding.bride_photo.crop.400x400 }}" class="attachment-full size-full" alt="" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" style="border-radius: 50%"/>
+																					<img width="720" height="720" src="{{ wedding.bride.photo.crop.400x400 }}" class="attachment-full size-full" alt="" loading="lazy" sizes="(max-width: 720px) 100vw, 720px" style="border-radius: 50%"/>
 																				</figure>
 																				<div class="elementor-image-box-content">
 																					<h3 class="elementor-image-box-title">
-																						{{ wedding.bride }}
+																						{{ wedding.bride.name }}
 																					</h3>
 																					<p class="elementor-image-box-description">
-																						{{ wedding.about_bride }}
+																						{{ wedding.bride.about }}
 																					</p>
 																				</div>
 																			</div>
@@ -2759,19 +2759,19 @@
 																		<div class="elementor-widget-container">
 																			<div class="elementor-social-icons-wrapper elementor-grid">
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459"target="_blank">
+																					<a href="{{ wedding.bride.facebook }}" class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459" target="_blank">
 																						<span class="elementor-screen-only">Facebook</span>
 																						<i class="fab fa-facebook"></i>
 																					</a>
 																				</div>
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405"target="_blank">
+																					<a href="{{ wedding.bride.instagram }}" class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405" target="_blank">
 																						<span class="elementor-screen-only">Instagram</span>
 																						<i class="fab fa-instagram"></i>
 																					</a>
 																				</div>
 																				<div class="elementor-grid-item">
-																					<a class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f"target="_blank">
+																					<a href="{{ wedding.bride.twitter }}" class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f" target="_blank">
 																						<span class="elementor-screen-only">Twitter</span>
 																						<i class="fab fa-twitter"></i>
 																					</a>
@@ -3643,10 +3643,9 @@
 												<div class="elementor-widget-container">
 													<div class="elementor-divider">
 														<span class="elementor-divider-separator">
-															<span
-																class="elementor-divider__text elementor-divider__element"
-																>{{ wedding.groom }} &amp; {{ wedding.bride }}</span
-															>
+															<span class="elementor-divider__text elementor-divider__element">
+															{{ wedding.groom.name }} &amp; {{ wedding.bride.name }}
+															</span>
 														</span>
 													</div>
 												</div>
