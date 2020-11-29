@@ -120,7 +120,7 @@ class Story(BaseModel):
     date = models.DateField()
     title = models.CharField(max_length=255, null=True, blank=True)
     body = models.TextField()
-    image = models.ImageField(upload_to='story_image', null=True, blank=True)
+    image = VersatileImageField(upload_to='story_image', null=True, blank=True)
 
     class Meta:
         ordering = ['date']
@@ -146,11 +146,11 @@ class Gallery(BaseModel):
 class ImageGallery(BaseModel):
     gallery = models.ForeignKey(Gallery, null=True, blank=True, on_delete=models.CASCADE)
     caption = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to='gallery_image')
+    image = VersatileImageField(upload_to='gallery_image')
 
     class Meta:
         verbose_name = 'Foto Galeri'
         verbose_name_plural = 'Foto Galeri'
 
     def __str__(self):
-        return self.galley.title
+        return self.gallery.title

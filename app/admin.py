@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 
-from app.models import Wedding, Bride, Groom, Invitation, Story, Gallery, InvitationText
+from app.models import Wedding, Bride, Groom, Invitation, Story, Gallery, ImageGallery, InvitationText
 
 
 class WeddingModelForm(forms.ModelForm):
@@ -93,9 +93,15 @@ class InvitationTextAdmin(WeddingContentAdmin):
     list_display = ['text']
 
 
+class ImageGalleryAdminInline(admin.StackedInline):
+    model = ImageGallery
+    extra = 1
+
+
 @admin.register(Gallery)
 class GalleryAdmin(WeddingContentAdmin):
     list_display = ['title']
+    inlines = [ImageGalleryAdminInline]
 
 
 @admin.register(Story)

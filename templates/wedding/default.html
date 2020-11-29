@@ -3,7 +3,7 @@
 <html lang="en-US">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Undangan Digital</title>
+		<title>Undangan Pernikahan {{ wedding.groom.name }} &amp; {{ wedding.bride.name }} </title>
 		<link rel="dns-prefetch" href="https://s.w.org/" />
 		<link rel="alternate" type="application/rss+xml" title="Json Levidio » Feed" href="https://json.levidio.id/feed/"/>
 		<link rel="alternate" type="application/rss+xml" title="Json Levidio » Comments Feed" href="https://json.levidio.id/comments/feed/"/>
@@ -2597,6 +2597,9 @@
 													</p>
 												</div>
 											</div>
+
+											{% comment %} Section Gallery {% endcomment %}
+											{% if wedding.gallery_set.first %}
 											<section class="elementor-section elementor-inner-section elementor-element elementor-element-af26191 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="af26191" data-element_type="section">
 												<div class="elementor-container elementor-column-gap-default">
 													<div class="elementor-row">
@@ -2606,6 +2609,7 @@
 																	<div class="elementor-element elementor-element-30b99d0 elementor-pagination-position-inside elementor-widget elementor-widget-image-carousel" data-id="30b99d0" data-element_type="widget" data-settings='{"slides_to_show":"1","navigation":"dots","autoplay":"yes","pause_on_hover":"yes","pause_on_interaction":"yes","autoplay_speed":5000,"infinite":"yes","effect":"slide","speed":500}' data-widget_type="image-carousel.default">
 																		<div class="elementor-widget-container">
 																			<div class="elementor-image-carousel-wrapper swiper-container swiper-container-initialized swiper-container-horizontal" dir="ltr">
+
 																				<div class="elementor-image-carousel swiper-wrapper" style="transition-duration: 0ms; transform: translate3d( -4304px, 0px, 0px);">
 																					<div class="swiper-slide swiper-slide-duplicate swiper-slide-duplicate-active" data-swiper-slide-index="3" style="width: 1076px">
 																						<figure class="swiper-slide-inner">
@@ -2616,52 +2620,22 @@
 																							/>
 																						</figure>
 																					</div>
-																					<div class="swiper-slide swiper-slide-duplicate-next" data-swiper-slide-index="0" style="width: 1076px">
+																				<!-- comp-gallery -->
+																				{% for image in wedding.gallery_set.first.imagegallery_set.all %}
+																					<div class="swiper-slide" data-swiper-slide-index="{{ forloop.counter0 }}" style="width: 1076px">
 																						<figure class="swiper-slide-inner">
 																							<img
 																								class="swiper-slide-image"
-																								src="{{ STATIC_URL }}wedding/2/IMG__0000_01.jpg"
+																								src="{{ image.image.crop.1200x800 }}"
 																								alt="Levidio Wedding Image Gallery"
 																							/>
 																						</figure>
 																					</div>
-																					<div class="swiper-slide" data-swiper-slide-index="1" style="width: 1076px">
-																						<figure class="swiper-slide-inner">
-																							<img
-																								class="swiper-slide-image"
-																								src="{{ STATIC_URL }}wedding/2/IMG__0003_04.jpg"
-																								alt="Levidio Wedding Image Gallery"
-																							/>
-																						</figure>
-																					</div>
-																					<div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="2" style="width: 1076px">
-																						<figure class="swiper-slide-inner">
-																							<img
-																								class="swiper-slide-image"
-																								src="{{ STATIC_URL }}wedding/2/IMG__0001_02.jpg"
-																								alt="Levidio Wedding Image Gallery"
-																							/>
-																						</figure>
-																					</div>
-																					<div class="swiper-slide swiper-slide-active" data-swiper-slide-index="3" style="width: 1076px">
-																						<figure class="swiper-slide-inner">
-																							<img
-																								class="swiper-slide-image"
-																								src="{{ STATIC_URL }}wedding/2/IMG__0002_03.jpg"
-																								alt="Levidio Wedding Image Gallery"
-																							/>
-																						</figure>
-																					</div>
-																					<div class="swiper-slide swiper-slide-duplicate swiper-slide-next" data-swiper-slide-index="0" style="width: 1076px">
-																						<figure class="swiper-slide-inner">
-																							<img
-																								class="swiper-slide-image"
-																								src="{{ STATIC_URL }}wedding/2/IMG__0000_01.jpg"
-																								alt="Levidio Wedding Image Gallery"
-																							/>
-																						</figure>
-																					</div>
+																				{% endfor %}
+																				<!-- comp-gallery -->
+
 																				</div>
+
 																				<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
 																					<span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span>
 																					<span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 2"></span>
@@ -2678,6 +2652,8 @@
 													</div>
 												</div>
 											</section>
+											{% endif %}
+
 											<div class="elementor-element elementor-element-5f07e39 elementor-widget elementor-widget-heading" data-id="5f07e39" data-element_type="widget" data-widget_type="heading.default">
 												<div class="elementor-widget-container">
 													<p class="elementor-heading-title elementor-size-default">
@@ -3045,14 +3021,10 @@
 																</div>
 															</div>
 														</div>
-														<div
-															class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-0168082"
-															data-id="0168082"
-															data-element_type="column"
-														>
-															<div
-																class="elementor-column-wrap elementor-element-populated"
-															>
+
+													{% if wedding.time %}
+														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-0168082" data-id="0168082" data-element_type="column">
+															<div class="elementor-column-wrap elementor-element-populated">
 																<div class="elementor-widget-wrap">
 																	<div
 																		class="elementor-element elementor-element-3c44b84 elementor-position-left elementor-vertical-align-middle elementor-widget elementor-widget-image-box"
@@ -3083,7 +3055,7 @@
 																					class="elementor-image-box-content"
 																				>
 																					<h3 class="elementor-image-box-title">
-																						08:00 - 12:00
+																						{{ wedding.time }}
 																					</h3>
 																				</div>
 																			</div>
@@ -3092,6 +3064,8 @@
 																</div>
 															</div>
 														</div>
+													{% endif %}
+
 													</div>
 												</div>
 											</section>
