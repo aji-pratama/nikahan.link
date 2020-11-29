@@ -3570,21 +3570,18 @@
 								<div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-e356ed0" data-id="e356ed0" data-element_type="column">
 									<div class="elementor-column-wrap elementor-element-populated">
 										<div class="elementor-widget-wrap">
+
+										{% if wedding.latitude and wedding.longitude %}										
 											<div class="elementor-element elementor-element-bfc8565 elementor-widget elementor-widget-google_maps" data-id="bfc8565" data-element_type="widget" data-widget_type="google_maps.default">
 												<div class="elementor-widget-container">
 													<div class="elementor-custom-embed">
-														<iframe
-															frameborder="0"
-															scrolling="no"
-															marginheight="0"
-															marginwidth="0"
-															src="{{ STATIC_URL }}wedding/2/maps.html"
-															title="rootpixel"
-															aria-label="rootpixel"
-														></iframe>
+														<iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q={{ wedding.latitude }},{{ wedding.longitude }}&hl=es&z=13&amp;output=embed" title="rootpixel" aria-label="rootpixel">
+														</iframe>
 													</div>
 												</div>
 											</div>
+										{% endif %}
+
 											<div class="elementor-element elementor-element-227a1cf elementor-widget-divider--view-line_text elementor-widget-divider--element-align-center elementor-widget elementor-widget-divider" data-id="227a1cf" data-element_type="widget" data-widget_type="divider.default">
 												<div class="elementor-widget-container">
 													<div class="elementor-divider">
