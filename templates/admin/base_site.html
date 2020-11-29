@@ -5,6 +5,10 @@
 {% block title %}{{ title }} | {{ site_title|default:_('Nikahan.link') }}
 {% endblock %}
 
+{% block extrahead %}
+    <link rel="icon" href="{{STATIC_URL}}image/nl_logo.png" sizes="48x48" />
+{% endblock %}
+
 {% block branding %}
 <h1 id="site-name">
 <a href="{% url 'admin:index' %}">
