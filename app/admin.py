@@ -9,7 +9,7 @@ from app.models import Wedding, Bride, Groom, Invitation, Story, Gallery, Invita
 
 
 class WeddingModelForm(forms.ModelForm):
-    template = forms.ChoiceField(widget=forms.Select())
+    template = forms.ChoiceField(widget=forms.Select(), help_text='Template yang akan ditampilkan pada wesbsite undangan.')
 
     class Meta:
         model = Wedding
