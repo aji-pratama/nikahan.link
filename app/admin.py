@@ -106,4 +106,4 @@ class GalleryAdmin(WeddingContentAdmin):
 
 @admin.register(Story)
 class StoryAdmin(WeddingContentAdmin):
-    list_display = ['title']
+    list_display = ['title', 'date']

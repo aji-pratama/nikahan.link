@@ -3095,7 +3095,7 @@
 						</div>
 					</section>
 
-					{% if not Wedding.story_set %}
+					{% if wedding.story_set %}
 					<section class="elementor-section elementor-top-section elementor-element elementor-element-ee3958f elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="ee3958f" data-element_type="section">
 						<div class="elementor-container elementor-column-gap-default">
 							<div class="elementor-row">
@@ -3118,6 +3118,65 @@
 											</div>
 
 										<!-- Section Stories -->
+										{% for story in wedding.story_set.all %}
+										{% if forloop.counter|divisibleby:2 %}
+											<section class="elementor-section elementor-inner-section elementor-element elementor-element-d20f9bd elementor-section-content-middle elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="d20f9bd" data-element_type="section">
+												<div class="elementor-container elementor-column-gap-default">
+													<div class="elementor-row">
+														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-50961c4" data-id="50961c4" data-element_type="column">
+															<div class="elementor-column-wrap elementor-element-populated">
+																<div class="elementor-widget-wrap">
+																	<div class="elementor-element elementor-element-d407611 elementor-widget elementor-widget-heading" data-id="d407611" data-element_type="widget" data-widget_type="heading.default">
+																		<div class="elementor-widget-container">
+																			<p class="elementor-heading-title elementor-size-default">
+																				{{ story.title }}
+																			</p>
+																		</div>
+																	</div>
+																	<div class="elementor-element elementor-element-7e3d55f elementor-widget elementor-widget-heading" data-id="7e3d55f" data-element_type="widget" data-widget_type="heading.default">
+																		<div class="elementor-widget-container">
+																			<p class="elementor-heading-title elementor-size-default">
+																				{{ story.date }}
+																			</p>
+																		</div>
+																	</div>
+																	<div class="elementor-element elementor-element-92f4907 elementor-widget elementor-widget-text-editor" data-id="92f4907" data-element_type="widget" data-widget_type="text-editor.default">
+																		<div class="elementor-widget-container">
+																			<div class="elementor-text-editor elementor-clearfix">
+																				<p class="italic mb-4">
+																					{{ story.body }}
+																				</p>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-79b1bad" data-id="79b1bad" data-element_type="column">
+															<div class="elementor-column-wrap elementor-element-populated">
+																<div class="elementor-widget-wrap">
+																	<div class="elementor-element elementor-element-0fae1b4 elementor-widget elementor-widget-image" data-id="0fae1b4" data-element_type="widget" data-widget_type="image.default">
+																		<div class="elementor-widget-container">
+																			<div class="elementor-image">
+																				<img
+																					width="1200"
+																					height="720"
+																					src="{{ story.image.crop.1200x720 }}"
+																					class="attachment-full size-full"
+																					alt=""
+																					loading="lazy"
+																					sizes="(max-width: 1200px) 100vw, 1200px"
+																				/>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</section>
+										{% else %}
 											<section class="elementor-section elementor-inner-section elementor-element elementor-element-dd65f48 elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="dd65f48" data-element_type="section">
 												<div class="elementor-container elementor-column-gap-default">
 													<div class="elementor-row">
@@ -3131,7 +3190,7 @@
 																				<img
 																					width="1200"
 																					height="720"
-																					src="{{ STATIC_URL }}wedding/2/GALERI__0002_1.jpg"
+																					src="{{ story.image.crop.1200x720 }}"
 																					class="attachment-full size-full"
 																					alt=""
 																					loading="lazy"
@@ -3149,14 +3208,14 @@
 																	<div class="elementor-element elementor-element-0a28552 elementor-widget elementor-widget-heading" data-id="0a28552" data-element_type="widget" data-widget_type="heading.default">
 																		<div class="elementor-widget-container">
 																			<p class="elementor-heading-title elementor-size-default">
-																				Lorem Ipsum Dolor
+																				{{ story.title }}
 																			</p>
 																		</div>
 																	</div>
 																	<div class="elementor-element elementor-element-32e81f1 elementor-widget elementor-widget-heading" data-id="32e81f1" data-element_type="widget" data-widget_type="heading.default">
 																		<div class="elementor-widget-container">
 																			<p class="elementor-heading-title elementor-size-default">
-																				MARCH 27, 20XX
+																				{{ story.date }}
 																			</p>
 																		</div>
 																	</div>
@@ -3164,11 +3223,7 @@
 																		<div class="elementor-widget-container">
 																			<div class="elementor-text-editor elementor-clearfix">
 																				<p class="italic mb-4">
-																					Levidio Wedding Page is lorem ipsum
-																					dolor sit amet consect etur adipiscint
-																					elit esed adipiscing elit sed tempor.
-																					Incididunt lorem ipsum dolor sit amet
-																					incididunt lorem.
+																					{{ story.body }}
 																				</p>
 																			</div>
 																		</div>
@@ -3179,67 +3234,8 @@
 													</div>
 												</div>
 											</section>
-
-										<!-- Section Stories -->
-
-											<section class="elementor-section elementor-inner-section elementor-element elementor-element-d20f9bd elementor-section-content-middle elementor-reverse-mobile elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-id="d20f9bd" data-element_type="section">
-												<div class="elementor-container elementor-column-gap-default">
-													<div class="elementor-row">
-														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-50961c4" data-id="50961c4" data-element_type="column">
-															<div class="elementor-column-wrap elementor-element-populated">
-																<div class="elementor-widget-wrap">
-																	<div class="elementor-element elementor-element-d407611 elementor-widget elementor-widget-heading" data-id="d407611" data-element_type="widget" data-widget_type="heading.default">
-																		<div class="elementor-widget-container">
-																			<p class="elementor-heading-title elementor-size-default">
-																				Sed Tempor Incididunt
-																			</p>
-																		</div>
-																	</div>
-																	<div class="elementor-element elementor-element-7e3d55f elementor-widget elementor-widget-heading" data-id="7e3d55f" data-element_type="widget" data-widget_type="heading.default">
-																		<div class="elementor-widget-container">
-																			<p class="elementor-heading-title elementor-size-default">
-																				{{ wedding.date }}
-																			</p>
-																		</div>
-																	</div>
-																	<div class="elementor-element elementor-element-92f4907 elementor-widget elementor-widget-text-editor" data-id="92f4907" data-element_type="widget" data-widget_type="text-editor.default">
-																		<div class="elementor-widget-container">
-																			<div
-																				class="elementor-text-editor elementor-clearfix"
-																			>
-																				<p class="italic mb-4">
-																					{{ wedding.quotes }}
-																				</p>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-														<div class="elementor-column elementor-col-50 elementor-inner-column elementor-element elementor-element-79b1bad" data-id="79b1bad" data-element_type="column">
-															<div class="elementor-column-wrap elementor-element-populated">
-																<div class="elementor-widget-wrap">
-																	<div class="elementor-element elementor-element-0fae1b4 elementor-widget elementor-widget-image" data-id="0fae1b4" data-element_type="widget" data-widget_type="image.default">
-																		<div class="elementor-widget-container">
-																			<div class="elementor-image">
-																				<img
-																					width="1200"
-																					height="720"
-																					src="{{ STATIC_URL }}wedding/2/GALERI__0001_2.jpg"
-																					class="attachment-full size-full"
-																					alt=""
-																					loading="lazy"
-																					sizes="(max-width: 1200px) 100vw, 1200px"
-																				/>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-											</section>
+										{% endif %}
+										{% endfor %}
 										<!-- Section Stories -->
 
 										</div>
