@@ -3069,50 +3069,22 @@
 													</div>
 												</div>
 											</section>
-											<div
-												class="elementor-element elementor-element-d8276eb elementor-aspect-ratio-169 elementor-widget elementor-widget-video"
-												data-id="d8276eb"
-												data-element_type="widget"
-												data-settings='{"aspect_ratio":"169"}'
-												data-widget_type="video.default"
-											>
+
+										{% if wedding.youtube %}
+											<div class="elementor-element elementor-element-d8276eb elementor-aspect-ratio-169 elementor-widget elementor-widget-video" data-id="d8276eb" data-element_type="widget" data-settings='{"aspect_ratio":"169"}' data-widget_type="video.default">
 												<div class="elementor-widget-container">
-													<div
-														class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline"
-													>
-														<iframe
-															class="elementor-video-iframe"
-															allowfullscreen=""
-															title="youtube Video Player"
-															src="{{ STATIC_URL }}wedding/2/RG1llY1kxYg.html"
-														></iframe>
+													<div class="elementor-wrapper elementor-fit-aspect-ratio elementor-open-inline">
+														<iframe class="elementor-video-iframe" allowfullscreen="" title="youtube Video Player" src="{{ wedding.youtube }}">
+														</iframe>
 													</div>
 												</div>
 											</div>
-											<div
-												class="elementor-element elementor-element-dc4c4c7 elementor-widget elementor-widget-image"
-												data-id="dc4c4c7"
-												data-element_type="widget"
-												data-widget_type="image.default"
-											>
+										{% endif %}
+
+											<div class="elementor-element elementor-element-dc4c4c7 elementor-widget elementor-widget-image" data-id="dc4c4c7" data-element_type="widget" data-widget_type="image.default">
 												<div class="elementor-widget-container">
 													<div class="elementor-image">
-														<img
-															width="1935"
-															height="106"
-															src="{{ STATIC_URL }}wedding/2/separator.png"
-															class="attachment-full size-full"
-															alt=""
-															loading="lazy"
-															srcset="
-																https://json.levidio.id/wp-content/uploads/2020/06/separator.png         1935w,
-																https://json.levidio.id/wp-content/uploads/2020/06/separator-300x16.png   300w,
-																https://json.levidio.id/wp-content/uploads/2020/06/separator-1024x56.png 1024w,
-																https://json.levidio.id/wp-content/uploads/2020/06/separator-768x42.png   768w,
-																https://json.levidio.id/wp-content/uploads/2020/06/separator-1536x84.png 1536w
-															"
-															sizes="(max-width: 1935px) 100vw, 1935px"
-														/>
+														<img width="1935" height="106" src="{{ STATIC_URL }}wedding/2/separator.png" class="attachment-full size-full" alt="" loading="lazy" sizes="(max-width: 1935px) 100vw, 1935px"/>
 													</div>
 												</div>
 											</div>
