@@ -2687,24 +2687,34 @@
 																	<div class="elementor-element elementor-element-4d98d0c elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="4d98d0c" data-element_type="widget" data-widget_type="social-icons.default">
 																		<div class="elementor-widget-container">
 																			<div class="elementor-social-icons-wrapper elementor-grid">
+
+																				{% if wedding.groom.facebook %}																				
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.groom.facebook }}" class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459"target="_blank">
 																						<span class="elementor-screen-only">Facebook</span>
 																						<i class="fab fa-facebook"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
+																				{% if wedding.groom.instagram %}	
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.groom.instagram }}" class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405"target="_blank">
 																						<span class="elementor-screen-only">Instagram</span>
 																						<i class="fab fa-instagram"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
+																				{% if wedding.groom.twitter%}																					
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.groom.twitter }}" class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f"target="_blank">
 																						<span class="elementor-screen-only">Twitter</span>
 																						<i class="fab fa-twitter"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
 																			</div>
 																		</div>
 																	</div>
@@ -2734,24 +2744,33 @@
 																	<div class="elementor-element elementor-element-957cb78 elementor-shape-rounded elementor-grid-0 elementor-widget elementor-widget-social-icons" data-id="957cb78" data-element_type="widget" data-widget_type="social-icons.default">
 																		<div class="elementor-widget-container">
 																			<div class="elementor-social-icons-wrapper elementor-grid">
+																				{% if wedding.bride.facebook %}
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.bride.facebook }}" class="elementor-icon elementor-social-icon elementor-social-icon-facebook elementor-animation-grow elementor-repeater-item-8c13459" target="_blank">
 																						<span class="elementor-screen-only">Facebook</span>
 																						<i class="fab fa-facebook"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
+																				{% if wedding.bride.instagram %}
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.bride.instagram }}" class="elementor-icon elementor-social-icon elementor-social-icon-instagram elementor-animation-grow elementor-repeater-item-6154405" target="_blank">
 																						<span class="elementor-screen-only">Instagram</span>
 																						<i class="fab fa-instagram"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
+																				{% if wedding.bride.twitter %}
 																				<div class="elementor-grid-item">
 																					<a href="{{ wedding.bride.twitter }}" class="elementor-icon elementor-social-icon elementor-social-icon-twitter elementor-animation-grow elementor-repeater-item-c2c989f" target="_blank">
 																						<span class="elementor-screen-only">Twitter</span>
 																						<i class="fab fa-twitter"></i>
 																					</a>
 																				</div>
+																				{% endif %}
+
 																			</div>
 																		</div>
 																	</div>
