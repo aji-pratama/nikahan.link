@@ -21,7 +21,7 @@ class BaseModel(models.Model):
 
 
 class Wedding(BaseModel):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL)
     slug = models.SlugField(blank=True, null=True)
     template = models.CharField(max_length=35)
     publish_status = models.PositiveSmallIntegerField(default=0, choices=PUBLISH_STATUS_CHOICES)
