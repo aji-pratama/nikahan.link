@@ -29,7 +29,7 @@ class Wedding(BaseModel):
     active = models.BooleanField(default=True)
 
     date = models.DateField()
-    quotes = models.CharField(max_length=255, null=True, blank=True)
+    quotes = models.TextField(blank=True)
     time = models.CharField(max_length=30, null=True, blank=True)
     youtube = models.URLField(blank=True, null=True)
     address = models.TextField(blank=True)
