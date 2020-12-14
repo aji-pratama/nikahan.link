@@ -30,7 +30,7 @@ class Wedding(BaseModel):
 
     date = models.DateField()
     quotes = models.TextField(blank=True)
-    time = models.CharField(max_length=30, null=True, blank=True)
+    time = models.TextField(blank=True)
     youtube = models.URLField(blank=True, null=True)
     address = models.TextField(blank=True)
     latitude = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
