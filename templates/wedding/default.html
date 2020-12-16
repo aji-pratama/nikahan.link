@@ -3,6 +3,11 @@
 <html lang="en-US">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta property="og:site_name" content="Nikahan.Link">
+		<meta property="og:title" content="Undangan Pernikahan" />
+		<meta property="og:description" content="{{ wedding.groom.name }} & {{ wedding.bride.name }}" />
+		<meta property="og:image" itemprop="image" content="{{ wedding.gallery_set.first.galleryimage_set.first }}">
+		<meta property="og:type" content="website" />
 		<title>Undangan Pernikahan {{ wedding.groom.name }} & {{ wedding.bride.name }} </title>
 		<link rel="dns-prefetch" href="https://s.w.org/" />
 		<link rel="alternate" type="application/rss+xml" title="Json Levidio » Feed" href="https://json.levidio.id/feed/"/>
